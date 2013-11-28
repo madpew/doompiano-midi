@@ -1,5 +1,5 @@
 # DoomPiano-Midi #
-##play Doom with you MidiController##
+##play Doom using you MidiController##
 
 DoomPiano-Midi is a fork of Mochadoom [https://github.com/jendave/mochadoom](https://github.com/jendave/mochadoom) that's a cleaned up version of the original hosted on [http://mochadoom.sourceforge.net](http://mochadoom.sourceforge.net)
 
