@@ -12,6 +12,8 @@ import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import net.pixelsiege.doompiano.PianoHandler;
 import net.sourceforge.mochadoom.automap.IAutoMap;
 import net.sourceforge.mochadoom.automap.Map;
 import net.sourceforge.mochadoom.awt.AWTDoom;
@@ -196,8 +198,7 @@ public abstract class DoomMain<T, V> extends DoomStatus<T, V> implements IDoomGa
         events[eventhead].setFrom(ev);
         eventhead = (++eventhead) & (MAXEVENTS - 1);
     }
-
-
+    
     /**
      * D_ProcessEvents
      * Send all the events of the given timestamp down the responder chain
@@ -220,6 +221,15 @@ public abstract class DoomMain<T, V> extends DoomStatus<T, V> implements IDoomGa
             Responder(ev);
             // We're done with it, return it to the pool.
             //epool.checkIn(ev);
+        }
+        
+        //check piano events
+        for (; PianoHandler.eventtail != PianoHandler.eventhead; PianoHandler.eventtail = (++PianoHandler.eventtail) & (MAXEVENTS - 1)) {
+            ev = PianoHandler.events[PianoHandler.eventtail];
+            if (M.Responder(ev)) {
+                continue;
+            }
+            Responder(ev);
         }
     }
 
@@ -796,6 +806,17 @@ public abstract class DoomMain<T, V> extends DoomStatus<T, V> implements IDoomGa
         // Sets unbuffered output in C. Not needed here. setbuf (stdout, NULL);
         modifiedgame = false;
 
+        int usepiano = CM.CheckParm("-piano");
+        if (eval(usepiano)) {
+        	String deviceName = CM.getArgv(usepiano + 1);
+        	
+        	if (PianoHandler.initPiano(deviceName)){
+        		System.out.println("PIANO: using device: '" + deviceName + "'");	
+        	}else{
+        		System.out.println("PIANO: failed to use device: '" + deviceName + "'");
+        	}
+        }
+        
         nomonsters = eval(CM.CheckParm("-nomonsters"));
         respawnparm = eval(CM.CheckParm("-respawn"));
         fastparm = eval(CM.CheckParm("-fast"));

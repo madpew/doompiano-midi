@@ -10,11 +10,7 @@ import static net.sourceforge.mochadoom.doom.English.HUSTR_CHATMACRO6;
 import static net.sourceforge.mochadoom.doom.English.HUSTR_CHATMACRO7;
 import static net.sourceforge.mochadoom.doom.English.HUSTR_CHATMACRO8;
 import static net.sourceforge.mochadoom.doom.English.HUSTR_CHATMACRO9;
-import static net.sourceforge.mochadoom.game.Keys.KEY_ALT;
-import static net.sourceforge.mochadoom.game.Keys.KEY_CTRL;
-import static net.sourceforge.mochadoom.game.Keys.KEY_LEFTARROW;
-import static net.sourceforge.mochadoom.game.Keys.KEY_RIGHTARROW;
-import static net.sourceforge.mochadoom.game.Keys.KEY_SHIFT;
+import static net.sourceforge.mochadoom.game.Keys.*;
 
 
 /**
@@ -31,8 +27,8 @@ public enum Settings {
     alwaysrun("1"),
     key_right(KEY_RIGHTARROW),
     key_left(KEY_LEFTARROW),
-    key_up('w'),
-    key_down('s'),
+    key_up(KEY_UPARROW),
+    key_down(KEY_DOWNARROW),
     key_strafeleft('a'),
     key_straferight('d'),
     key_fire(KEY_CTRL),

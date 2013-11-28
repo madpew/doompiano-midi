@@ -360,7 +360,6 @@ public abstract class DoomFrame<V> extends JFrame implements DoomVideoInterface<
             Dimension newsize = new Dimension(dm.getWidth(), dm.getHeight());
             this.setDefaultDimension(dm.getWidth(), dm.getHeight());
             setCanvasSize(newsize);
-
         } else {
             // Windowed mode
             pack();
@@ -433,7 +432,9 @@ public abstract class DoomFrame<V> extends JFrame implements DoomVideoInterface<
         //if (gel2d==null) gel2d= (Graphics2D)gelatine.getGraphics();
         V.update();
         //voli.getGraphics().drawImage(bi,0,0,null);
-        g2d.drawImage(screen, X_OFF, Y_OFF, this);
+        if (g2d != null){
+        	g2d.drawImage(screen, X_OFF, Y_OFF, this);
+        }
         //gel2d.setColor(new Color(.3f, .4f, .5f, .1f));
         //gel2d.fillRect(0, 0, this.getWidth(), this.getHeight());
 

@@ -157,7 +157,7 @@ public class MochaEvents implements WindowListener, ComponentListener, KeyEventD
         Point tmp;
         // Unlike most keys, caps lock etc. can be polled, so no need to worry
         // about them getting stuck.  So they are re-polled after all other
-        // key states have beeen cleared.
+        // key states have been cleared.
         /*  if (DM.shouldPollLockingKeys()) {
            for (Map.Entry<Integer, Boolean> e: lockingKeyStates.entrySet()) {
                e.setValue(null);

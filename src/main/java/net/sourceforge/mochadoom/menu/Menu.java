@@ -1,5 +1,6 @@
 package net.sourceforge.mochadoom.menu;
 
+import net.pixelsiege.doompiano.PianoHandler;
 import net.sourceforge.mochadoom.data.sounds.sfxenum_t;
 import net.sourceforge.mochadoom.defines.Language_t;
 import net.sourceforge.mochadoom.defines.gamestate_t;
@@ -794,6 +795,9 @@ public class Menu extends AbstractDoomMenu {
         public void invoke(int ch) {
             if (ch != 'y')
                 return;
+            
+            PianoHandler.cleanPiano();
+            
             if (!DM.netgame) {
                 if (DM.isCommercial())
                     S.StartSound(null, quitsounds2[(DM.gametic >> 2) & 7]);
@@ -801,6 +805,7 @@ public class Menu extends AbstractDoomMenu {
                     S.StartSound(null, quitsounds[(DM.gametic >> 2) & 7]);
                 I.WaitVBL(105);
             }
+            
             I.Quit();
         }
     }
